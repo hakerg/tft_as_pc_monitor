@@ -1,0 +1,21 @@
+VCC - 3,3V
+GND - GND
+CS - vdiv - D9
+RESET - 10k - D8
+DC - vdiv - D10
+SDI - vdiv - D11
+SCK - vdiv - D13
+LED - 3,3V
+SDO - D12
+
+T_CLK - 10k - D3
+T_CS - 10k - D4
+T_DIN - 10k - D5
+T_DO - D6
+T_IRQ - 10k - D7
+
+
+vdiv:
+IN - 1,5k -+- OUT
+           |
+           +- 3,3k - GND
