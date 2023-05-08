@@ -32,14 +32,13 @@ URTouch ts(T_SCK, T_CS, T_MOSI, T_MISO, T_IRQ);
 // Define Functions below here or use other .ino or cpp files
 //
 
-int xl;
-int y;
-int sizexh;
+uint16_t xl;
+uint16_t y;
+uint16_t sizexh;
 
 uint16_t x;
 uint16_t sizeX;
 uint16_t sizeY;
-uint16_t colorCount;
 
 bool lastMinusOne = true;
 unsigned long nextTouch = 0;
@@ -86,6 +85,18 @@ void setHugeFont()
 	tft.setTextLineSpacing(2);
 }*/
 
+void PerformanceTest()
+{
+	for (;;)
+	{
+		unsigned long time = micros();
+		tft.fillRect(0, 0, 320, 240, 0xFFFF);
+		time = micros() - time;
+		Serial.print("Time [us]: ");
+		Serial.println(time);
+	}
+}
+
 // The setup() function runs once each time the micro-controller starts
 void setup()
 {
@@ -98,6 +109,8 @@ void setup()
 	ts.InitTouch();
 	ts.setPrecision(PREC_EXTREME);
 	Serial.flush();
+
+	//PerformanceTest();
 
 	for (;;)
 	{
@@ -118,7 +131,7 @@ void setup()
 			sizeX = (1 << ((sizexh >> 1) & 0xF));
 			sizeY = (1 << (sizexh >> 5));
 
-			tft.fillRect(x, y, sizeX, sizeY, uint16_t(Serial.read()) | (uint16_t(Serial.read()) << 8));
+			tft.fillRect(x, y, sizeX, sizeY, (uint16_t)Serial.read() | (((uint16_t)Serial.read()) << 8));
 		}
 	}
 }

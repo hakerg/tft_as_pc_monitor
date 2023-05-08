@@ -15,11 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="tft_as_pc_monitor.ino" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="__vm\.tft_as_pc_monitor.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tft_as_pc_monitor.ino" />
   </ItemGroup>
 </Project>
